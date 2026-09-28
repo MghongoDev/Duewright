@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# uv-managed virtual environment (uv.lock and .python-version stay committed)
+.venv/
+
+# Local task data (default data path from ADR-003)
+data/
+
+# Test and tool caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Build artifacts
+dist/
+build/
+
+# Environment and editor files
+.env
+.DS_Store
+.idea/
+.vscode/

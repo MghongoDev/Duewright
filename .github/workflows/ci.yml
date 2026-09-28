@@ -1,0 +1,22 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Installs uv and the interpreter from .python-version (3.12).
+      - uses: astral-sh/setup-uv@v10
+        with:
+          python-version: "3.12"
+
+      # Fails if pyproject.toml and uv.lock disagree — catches the classic
+      # "added a dependency but forgot to commit the lockfile" mistake.
+      - run: uv sync --locked
+
+      - run: uv run ruff check .
+
+      - run: uv run pytest
