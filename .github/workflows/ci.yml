@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
 
       # Installs uv and the interpreter from .python-version (3.12).
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.2.0
         with:
           python-version: "3.12"
 
