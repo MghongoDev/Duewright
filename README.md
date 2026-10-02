@@ -4,9 +4,10 @@ A task manager with one tested core and two interfaces: an interactive CLI and a
 documented REST API, over the same business logic. Tasks sort by due date first,
 priority second; overdue work is flagged; everything survives restarts.
 
-**Status: Phase 0 - foundation.** The project skeleton, design records, toolchain,
-and CI are in place; the feature phases (core, persistence, CLI, API, deploy) build
-on this base. See [tasks/plan.md](tasks/plan.md) for the build order.
+**Status: Phase 1 - in-memory core.** The domain model, validators, repository
+contract, and `TaskManager` are implemented and tested; persistence (Phase 2), the
+CLI (Phase 3), and the API (Phase 4) build on them. See [tasks/plan.md](tasks/plan.md)
+for the build order.
 
 ## Quick start
 

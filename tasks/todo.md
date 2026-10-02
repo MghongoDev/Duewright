@@ -5,29 +5,29 @@
 
 ## Phase 0: Foundation and design
 
-- [ ] 0.1 Scaffold uv package (`pyproject.toml` metadata, script entry)
-- [ ] 0.2 Dependencies (`uv add` runtime + dev groups, lockfile refreshed)
-- [ ] 0.3 Source layout + test scaffolding (all modules, placeholder test green)
-- [ ] 0.4 Design docs (ADR-001..005, idea one-pager)
-- [ ] 0.5 CI, `.gitignore`, README
+- [x] 0.1 Scaffold uv package (`pyproject.toml` metadata, script entry)
+- [x] 0.2 Dependencies (`uv add` runtime + dev groups, lockfile refreshed)
+- [x] 0.3 Source layout + test scaffolding (all modules, placeholder test green)
+- [x] 0.4 Design docs (ADR-001..005, idea one-pager)
+- [x] 0.5 CI, `.gitignore`, README
 
 ### Checkpoint: Foundation
 
-- [ ] `uv run pytest` green, `uv run ruff check .` clean
-- [ ] `uv sync --locked` from a fresh state works
-- [ ] Design recorded in ADRs; no agent commits
+- [x] `uv run pytest` green, `uv run ruff check .` clean
+- [x] `uv sync --locked` from a fresh state works
+- [x] Design recorded in ADRs; no agent commits
 
 ## Phase 1: In-memory core
 
-- [ ] 1.1 Exceptions (`TodoError` hierarchy)
-- [ ] 1.2 Models (`Priority`, `Task`, injectable `is_overdue`, dict round-trips)
-- [ ] 1.3 Validation (title, tags, due date)
-- [ ] 1.4 Repository protocol + `InMemoryTaskRepository`
-- [ ] 1.5 `TaskManager` (CRUD, smart sort, filters, stats)
+- [x] 1.1 Exceptions (`TodoError` hierarchy)
+- [x] 1.2 Models (`Priority`, `Task`, injectable `is_overdue`, dict round-trips)
+- [x] 1.3 Validation (title, tags, due date)
+- [x] 1.4 Repository protocol + `InMemoryTaskRepository`
+- [x] 1.5 `TaskManager` (CRUD, smart sort, filters, stats)
 
 ### Checkpoint: Core
 
-- [ ] REPL walkthrough passes; `uv run pytest` green
+- [x] REPL walkthrough passes; `uv run pytest` green
 
 ## Phase 2: Persistence
 

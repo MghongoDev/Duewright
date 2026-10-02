@@ -1,9 +1,5 @@
 # Implementation Plan: Duewright
 
-*Source brief: `~/Projects/to_do/smart-todo-manager-implementation-guide.md`. Requirements
-and acceptance criteria live in `SPEC.md`. This plan owns build order, task slices,
-checkpoints, and risks. Design rationale lives in `docs/decisions/` (ADRs).*
-
 ## Overview
 
 Duewright is a task manager with one tested core and two thin interfaces: an interactive
@@ -37,28 +33,28 @@ Dependency arrows point one way; nothing in the core imports cli or api.
 
 ### Phase 0: Foundation and design (this deliverable)
 
-- [ ] Task 0.1: Scaffold uv package — `uv init --package --python 3.12`; set metadata
+- [x] Task 0.1: Scaffold uv package — `uv init --package --python 3.12`; set metadata
   (name, description, `requires-python = ">=3.11"`), `[project.scripts]
   duewright = "duewright.cli:main"`.
   - Acceptance: `pyproject.toml` carries the four metadata items.
   - Verify: `uv sync --locked` succeeds.
   - Files: `pyproject.toml`, `.python-version`, `src/duewright/__init__.py`.
-- [ ] Task 0.2: Dependencies — `uv add fastapi "uvicorn[standard]"`;
+- [x] Task 0.2: Dependencies — `uv add fastapi "uvicorn[standard]"`;
   `uv add --dev pytest pytest-cov httpx ruff radon`.
   - Acceptance: both groups present; `uv.lock` refreshed.
   - Verify: `uv sync --locked` succeeds; `uv run python -c "import fastapi"` works.
   - Files: `pyproject.toml`, `uv.lock`.
-- [ ] Task 0.3: Layout — create `exceptions.py`, `validation.py`, `models.py`,
+- [x] Task 0.3: Layout — create `exceptions.py`, `validation.py`, `models.py`,
   `storage.py`, `service.py`, `cli.py`, `api/` with docstring stubs; `tests/` with
   `conftest.py` and a placeholder test.
   - Acceptance: every module from the guide's structure exists.
   - Verify: `uv run pytest` passes; `uv run ruff check .` passes.
   - Files: `src/duewright/**`, `tests/**`.
-- [ ] Task 0.4: Design docs — ADR-001..005 and `docs/ideas/duewright.md`.
+- [x] Task 0.4: Design docs — ADR-001..005 and `docs/ideas/duewright.md`.
   - Acceptance: each ADR states decision, why, trade-off.
   - Verify: files exist and cross-reference the spec.
   - Files: `docs/decisions/*.md`, `docs/ideas/duewright.md`.
-- [ ] Task 0.5: CI — `.github/workflows/ci.yml` with `uv sync --locked`,
+- [x] Task 0.5: CI — `.github/workflows/ci.yml` with `uv sync --locked`,
   `uv run ruff check .`, `uv run pytest`; plus `.gitignore` and README.
   - Acceptance: workflow steps mirror the guide.
   - Verify: the same three commands pass locally.
@@ -66,24 +62,24 @@ Dependency arrows point one way; nothing in the core imports cli or api.
 
 ### Checkpoint: Foundation (Phase 0 exit)
 
-- [ ] `uv run pytest` green; `uv run ruff check .` clean.
-- [ ] `uv sync --locked` works from a fresh state (delete `.venv/`, re-sync).
-- [ ] Design recorded in ADRs; user informed; no agent commits.
+- [x] `uv run pytest` green; `uv run ruff check .` clean.
+- [x] `uv sync --locked` works from a fresh state (delete `.venv/`, re-sync).
+- [x] Design recorded in ADRs; user informed; no agent commits.
 
 ### Phase 1: In-memory core
 
-- [ ] Task 1.1: `exceptions.py` — `TodoError` base; `ValidationError`,
+- [x] Task 1.1: `exceptions.py` — `TodoError` base; `ValidationError`,
   `TaskNotFoundError`, `StorageError` subclasses.
   - Verify: import test asserts the hierarchy.
-- [ ] Task 1.2: `models.py` — `Priority` enum, `Task` dataclass with injectable
+- [x] Task 1.2: `models.py` — `Priority` enum, `Task` dataclass with injectable
   `is_overdue(today)`, `to_dict`/`from_dict` with ISO round-trips.
   - Verify: `test_models.py` covers overdue edge cases and serialization round-trips.
-- [ ] Task 1.3: `validation.py` — `validate_title` (1-200 chars, stripped),
+- [x] Task 1.3: `validation.py` — `validate_title` (1-200 chars, stripped),
   `normalize_tags` (lowercase, dedupe, drop empties, cap length), `parse_due_date`.
   - Verify: `test_validation.py` (or folded into `test_models.py`) covers rejects.
-- [ ] Task 1.4: `storage.py` — `TaskRepository` protocol; `InMemoryTaskRepository`.
+- [x] Task 1.4: `storage.py` — `TaskRepository` protocol; `InMemoryTaskRepository`.
   - Verify: `test_storage.py::test_inmemory_*` passes.
-- [ ] Task 1.5: `service.py` — `TaskManager` with `add`, `get`, `list` (smart sort:
+- [x] Task 1.5: `service.py` — `TaskManager` with `add`, `get`, `list` (smart sort:
   dated first by due date, then undated, ties by priority high-first), `update`,
   `complete`, `delete`, `stats`.
   - Verify: `test_service.py` covers sort order, filters, search, overdue, unknown-ID
@@ -91,7 +87,7 @@ Dependency arrows point one way; nothing in the core imports cli or api.
 
 ### Checkpoint: Core
 
-- [ ] Full CRUD works from a REPL; `uv run pytest` green.
+- [x] Full CRUD works from a REPL; `uv run pytest` green.
 
 ### Phase 2: Persistence
 
